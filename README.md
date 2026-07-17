@@ -1,12 +1,12 @@
 # UniversalAuth — Android 16 compatibility fork
 
-[中文](#中文说明) | [English](#english)
+[更新说明](#更新说明) | [原仓库说明](#原仓库说明)
 
 This fork keeps UniversalAuth working on modern SystemUI, adds an Android 16 face-unlock path, and refreshes the face-unlock app with Material 3 Expressive and Simplified Chinese support.
 
 > Tested on Xiaomi 13 (fuxi), Android 16, LSPosed. The legacy Android 10–12 path is retained, but has not been re-tested on every ROM.
 
-## 中文说明
+## 更新说明
 
 UniversalAuth 可以为不同 Android ROM 提供自定义锁屏认证方式。本分支新增了 Android 16 的 SystemUI 解锁适配，并将人脸解锁应用更新为 Material 3 Expressive 界面，支持简体中文和系统动态配色。
 
@@ -27,7 +27,7 @@ UniversalAuth 可以为不同 Android ROM 提供自定义锁屏认证方式。�
 5. 点击“开始设置”录入面部；相机权限请选择“仅在使用该应用时允许”。
 6. 锁定屏幕并测试。更新 Xposed APK 后必须再次重启；仅更新 Face Unlock APK 通常不需要重启。
 
-## English
+## 原仓库说明
 
 This project aims to bring a variety of custom authentication options to various Android ROMs.
 
