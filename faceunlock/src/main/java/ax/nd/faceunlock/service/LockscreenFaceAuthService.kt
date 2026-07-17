@@ -231,10 +231,10 @@ class LockscreenFaceAuthService : AccessibilityService(), FaceAuthServiceCallbac
                     textViewAnimator = textView?.animate()
                         ?.alpha(0f)
                         ?.setListener(object : Animator.AnimatorListener {
-                            override fun onAnimationStart(p0: Animator?) {}
-                            override fun onAnimationEnd(p0: Animator?) = onTextViewAnimationEnd()
-                            override fun onAnimationCancel(p0: Animator?) {}
-                            override fun onAnimationRepeat(p0: Animator?) {}
+                            override fun onAnimationStart(p0: Animator) {}
+                            override fun onAnimationEnd(p0: Animator) = onTextViewAnimationEnd()
+                            override fun onAnimationCancel(p0: Animator) {}
+                            override fun onAnimationRepeat(p0: Animator) {}
                         })
                         ?.setStartDelay(delay.toLong())
                         ?.setDuration(300)

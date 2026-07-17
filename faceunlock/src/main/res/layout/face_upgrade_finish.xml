@@ -62,7 +62,7 @@
         android:gravity="center_horizontal"
         android:minHeight="@dimen/settings_tutorial_button_layout_height">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/singleButton"
             style="@style/ButtonTextRound"
             android:layout_width="wrap_content"

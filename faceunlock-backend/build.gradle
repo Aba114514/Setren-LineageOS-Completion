@@ -4,7 +4,9 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    namespace "ax.nd.faceunlock.backend"
+    compileSdk 36
+    buildToolsVersion "35.0.0"
 
     defaultConfig {
         minSdk 29
@@ -26,6 +28,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+    lint {
+        checkReleaseBuilds false
     }
 }
 

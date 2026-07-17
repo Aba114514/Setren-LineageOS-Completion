@@ -28,7 +28,13 @@ object UnlockReceiver {
         // Register broadcastReceiver for IPC
         // TODO Handle multiple users
         val intentFilter = IntentFilter(ACTION_UNLOCK_DEVICE)
-        context.registerReceiver(unlockReceiver, intentFilter, PERMISSION_UNLOCK_DEVICE, null)
+        context.registerReceiver(
+            unlockReceiver,
+            intentFilter,
+            PERMISSION_UNLOCK_DEVICE,
+            null,
+            Context.RECEIVER_EXPORTED
+        )
 
         XposedHelpers.setAdditionalInstanceField(attachTo, ATTACH_KEY, unlockReceiver)
 

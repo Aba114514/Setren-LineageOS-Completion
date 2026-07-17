@@ -17,6 +17,7 @@ import ax.nd.faceunlock.pref.Prefs;
 import ax.nd.faceunlock.service.FacePPPreloader;
 import ax.nd.faceunlock.util.NotificationUtils;
 import ax.nd.faceunlock.util.Util;
+import com.google.android.material.color.DynamicColors;
 
 public class FaceApplication extends Application {
     private static final String TAG = FaceApplication.class.getSimpleName();
@@ -55,6 +56,7 @@ public class FaceApplication extends Application {
             Log.d(TAG, "onCreate");
         }
         super.onCreate();
+        DynamicColors.applyToActivitiesIfAvailable(this);
         mApp = this;
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(Intent.ACTION_USER_PRESENT);

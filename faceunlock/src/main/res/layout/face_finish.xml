@@ -129,14 +129,14 @@
             android:layout_alignParentEnd="true"
             tools:ignore="UselessParent">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_done"
                 style="@style/SuwGlifButton.Primary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/btn_done" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_next"
                 style="@style/SuwGlifButton.Primary"
                 android:layout_width="wrap_content"

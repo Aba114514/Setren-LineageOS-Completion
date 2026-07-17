@@ -72,9 +72,9 @@ class MainActivity : AppCompatActivity(), RemoveFaceControllerCallbacks {
                 if(error != null) {
                     curErrorDialog?.cancel()
                     curErrorDialog = MaterialDialog(this@MainActivity).show {
-                        title(text = "Fatal error")
-                        message(text = "Failed to load libraries, application will now crash!")
-                        positiveButton(text = "Ok :(") {
+                        title(text = getString(R.string.fatal_error_title))
+                        message(text = getString(R.string.fatal_error_message))
+                        positiveButton(text = getString(R.string.fatal_error_action)) {
                             throw error
                         }
                         cancelable(false)
@@ -95,9 +95,9 @@ class MainActivity : AppCompatActivity(), RemoveFaceControllerCallbacks {
         // Request accessibility prefs
         if(!isAccessServiceEnabled(this, LockscreenFaceAuthService::class.java)) {
             MaterialDialog(this).show {
-                title(text = "Accessibility service not enabled")
-                message(text = "Face unlock needs accessibility access to interact with your lock screen. Please enable the 'Face unlock' accessibility service on the next page.")
-                positiveButton(text = "Ok") {
+                title(text = getString(R.string.accessibility_required_title))
+                message(text = getString(R.string.accessibility_required_message))
+                positiveButton(text = getString(android.R.string.ok)) {
                     val intent = Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)
                     startActivity(intent)
                 }
@@ -142,6 +142,7 @@ class MainActivity : AppCompatActivity(), RemoveFaceControllerCallbacks {
         val faceId = SharedUtil(this).getIntValueByKey(AppConstants.SHARED_KEY_FACE_ID)
         if(faceId > -1) {
             // Face enrolled
+            binding.enrollmentStatus.setText(R.string.face_enrolled)
             binding.setupBtn.isEnabled = false
             binding.authBtn.isEnabled = true
             binding.removeBtn.isEnabled = true
@@ -150,6 +151,7 @@ class MainActivity : AppCompatActivity(), RemoveFaceControllerCallbacks {
             }
         } else {
             // No face enrolled
+            binding.enrollmentStatus.setText(R.string.face_not_enrolled)
             binding.setupBtn.isEnabled = true
             binding.authBtn.isEnabled = false
             binding.removeBtn.isEnabled = false
@@ -158,7 +160,7 @@ class MainActivity : AppCompatActivity(), RemoveFaceControllerCallbacks {
 
     override fun onRemove() {
         runOnUiThread {
-            Toast.makeText(this, "Face successfully removed!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.face_removed, Toast.LENGTH_SHORT).show()
             updateButtons()
             releaseRemoveFaceController()
         }
@@ -166,7 +168,7 @@ class MainActivity : AppCompatActivity(), RemoveFaceControllerCallbacks {
 
     override fun onError(errId: Int, message: String) {
         runOnUiThread {
-            Toast.makeText(this, "Failed to remove face: $message", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, getString(R.string.face_remove_failed, message), Toast.LENGTH_LONG).show()
             releaseRemoveFaceController()
         }
     }

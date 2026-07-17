@@ -1,35 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <SwitchPreference
-        android:defaultValue="true"
-        android:key="preload_face"
-        android:summary="Keeps the program loaded in the background. Uses slightly more RAM (~20 MB) but speeds up recognition by 30%."
-        android:title="Stay loaded in background" />
-    <SwitchPreference
-        android:defaultValue="false"
-        android:key="early_unlock_hook"
-        android:summary="Start the face unlock algorithm at the same time as the lockscreen is shown. May not work on all devices yet."
-        android:title="Even faster face unlock" />
-    <SwitchPreference
-        android:defaultValue="false"
-        android:key="require_pin_on_boot"
-        android:summary="Do not allow using face unlock until the phone is unlocked at least once after boot. Only enable this if your device does not already automatically enforce this."
-        android:title="Disable for first unlock" />
-    <SwitchPreference
-        android:defaultValue="true"
-        android:key="bypass_keyguard"
-        android:summary="Automatically dismiss lockscreen once authenticated with face"
-        android:title="Auto dismiss lockscreen" />
-    <ListPreference
-        android:defaultValue="mode_unlock_fading"
-        android:dependency="bypass_keyguard"
-        android:entries="@array/unlock_animation"
-        android:entryValues="@array/unlock_animation_values"
-        android:key="unlock_animation"
-        android:title="Lockscreen dismiss animation" />
-    <SwitchPreference
-        android:defaultValue="true"
-        android:key="show_status_text"
-        android:summary="Show face unlock status on lockscreen"
-        android:title="Show status text" />
+
+    <PreferenceCategory
+        android:title="@string/settings_performance"
+        app:iconSpaceReserved="false">
+
+        <SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="preload_face"
+            android:summary="@string/preload_face_summary"
+            android:title="@string/preload_face_title"
+            app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="early_unlock_hook"
+            android:summary="@string/early_unlock_summary"
+            android:title="@string/early_unlock_title"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/settings_security"
+        app:iconSpaceReserved="false">
+
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="require_pin_on_boot"
+            android:summary="@string/require_pin_summary"
+            android:title="@string/require_pin_title"
+            app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="bypass_keyguard"
+            android:summary="@string/bypass_keyguard_summary"
+            android:title="@string/bypass_keyguard_title"
+            app:iconSpaceReserved="false" />
+
+        <ListPreference
+            android:defaultValue="mode_unlock_fading"
+            android:dependency="bypass_keyguard"
+            android:entries="@array/unlock_animation"
+            android:entryValues="@array/unlock_animation_values"
+            android:key="unlock_animation"
+            android:title="@string/unlock_animation_title"
+            app:iconSpaceReserved="false"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/settings_feedback"
+        app:iconSpaceReserved="false">
+
+        <SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="show_status_text"
+            android:summary="@string/show_status_summary"
+            android:title="@string/show_status_title"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
 </PreferenceScreen>

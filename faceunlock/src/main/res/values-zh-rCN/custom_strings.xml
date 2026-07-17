@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">人脸解锁</string>
+    <string name="accessibility_service_description">人脸解锁需要辅助功能权限才能在锁屏上运行。</string>
+    <string name="accessibility_required_title">尚未启用辅助功能服务</string>
+    <string name="accessibility_required_message">人脸解锁需要辅助功能权限才能操作锁屏。请在下一页启用“人脸解锁”辅助功能服务。</string>
+    <string name="fatal_error_title">严重错误</string>
+    <string name="fatal_error_message">无法加载识别库，应用必须关闭。</string>
+    <string name="fatal_error_action">关闭</string>
     <string name="attr_light_dark">面部光线太弱</string>
     <string name="attr_light_high">面部光线太强</string>
     <string name="attr_light_shadow">面部阴影过多</string>
@@ -39,4 +45,30 @@
     <string name="unlock_failed_face_small">面部距离太远</string>
     <string name="upgrade_finish_summary">"现在，您可以使用人脸解锁功能解锁设备了"</string>
     <string name="upgrade_finish_title">好了！</string>
+    <string name="main_subtitle">私密的本地面部认证</string>
+    <string name="main_hero_title">一眼即可解锁</string>
+    <string name="face_enrolled">已录入面部 · 可以解锁</string>
+    <string name="face_not_enrolled">尚未录入面部</string>
+    <string name="action_enroll_face">设置面部解锁</string>
+    <string name="action_test_face">测试识别</string>
+    <string name="action_remove_face">移除面部</string>
+    <string name="settings_title">解锁偏好</string>
+    <string name="settings_performance">性能</string>
+    <string name="settings_security">安全与锁屏</string>
+    <string name="settings_feedback">反馈</string>
+    <string name="preload_face_title">常驻后台</string>
+    <string name="preload_face_summary">让识别器保持就绪以加快解锁，约多占用 20 MB 内存。</string>
+    <string name="early_unlock_title">提前开始识别</string>
+    <string name="early_unlock_summary">锁屏出现时即开始识别；兼容性因设备而异。</string>
+    <string name="require_pin_title">首次解锁需要凭据</string>
+    <string name="require_pin_summary">重启后先输入一次 PIN、图案或密码，再启用面部解锁。</string>
+    <string name="bypass_keyguard_title">自动退出锁屏</string>
+    <string name="bypass_keyguard_summary">匹配成功后打开主屏幕或上次使用的应用。</string>
+    <string name="unlock_animation_title">退出动画</string>
+    <string name="show_status_title">显示识别状态</string>
+    <string name="show_status_summary">在锁屏上显示面部识别进度。</string>
+    <string name="status_looking_for_face">正在寻找你的面部…</string>
+    <string name="auth_success">认证成功，用时 %1$d 毫秒</string>
+    <string name="face_removed">面部已移除</string>
+    <string name="face_remove_failed">无法移除面部：%1$s</string>
 </resources>
