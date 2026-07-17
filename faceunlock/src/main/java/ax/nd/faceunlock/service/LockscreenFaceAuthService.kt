@@ -145,7 +145,11 @@ class LockscreenFaceAuthService : AccessibilityService(), FaceAuthServiceCallbac
         }
         lockStateReceiver = object : BroadcastReceiver() {
             override fun onReceive(p0: Context?, p1: Intent?) {
-                doubleCheckLockscreenState()
+                when (p1?.action) {
+                    Intent.ACTION_SCREEN_ON -> doubleCheckLockscreenState()
+                    Intent.ACTION_SCREEN_OFF,
+                    Intent.ACTION_USER_PRESENT -> hide()
+                }
             }
         }
         registerReceiver(lockStateReceiver, intentFilter)
