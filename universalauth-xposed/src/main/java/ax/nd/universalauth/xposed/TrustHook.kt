@@ -139,14 +139,17 @@ object TrustHook {
         XposedHelpersExt.runAfterClassConstructed(kumClazz) { param ->
             val context = contextField.get(param.thisObject) as Context
             UnlockReceiver.setup(context, param.thisObject) { intent ->
-                val requestsTrustPath = !intent.getBooleanExtra(EXTRA_BYPASS_KEYGUARD, true)
+                val bypassKeyguard = intent.getBooleanExtra(EXTRA_BYPASS_KEYGUARD, true)
+                val requestsTrustPath = !bypassKeyguard
                 val hasModernFaceAuthPath = modernFaceAuthInteractor != null
                 if (requestsTrustPath || hasModernFaceAuthPath) {
                     val currentUser = Util.getCurrentUser()
                     markFaceAuthenticatedForModernSystemUi(param.thisObject)
                     onFaceAuthenticated.invoke(param.thisObject, currentUser, true)
-                    if (hasModernFaceAuthPath) {
+                    if (hasModernFaceAuthPath && bypassKeyguard) {
                         startModernSystemUiWakeAndUnlock(param.thisObject)
+                    } else if (hasModernFaceAuthPath) {
+                        Log.d(TAG, "Face authenticated; keeping keyguard for swipe-to-dismiss")
                     }
                 }
             }

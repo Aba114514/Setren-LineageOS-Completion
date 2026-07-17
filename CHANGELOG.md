@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.8-a16fix8
+
+- Respect the Auto-dismiss lock screen preference on Android 16.
+- When auto-dismiss is disabled, authenticate the face but keep the keyguard visible until the user swipes.
+
 ## 1.8-a16fix7
 
 - Add an Android 16 SystemUI face-authentication and wake-and-unlock path.
