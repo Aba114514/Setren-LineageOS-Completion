@@ -33,6 +33,13 @@ android {
         viewBinding true
         aidl true
     }
+    sourceSets {
+        main {
+            // Ship the SystemUI hook in the same APK as the controller and recognizer.
+            java.srcDirs += "../universalauth-xposed/src/main/java"
+            assets.srcDirs += "../universalauth-xposed/src/main/assets"
+        }
+    }
     lint {
         checkReleaseBuilds false
     }
@@ -42,11 +49,8 @@ dependencies {
     implementation project(':faceunlock-backend')
     implementation project(':faceunlock-framework_stub')
     implementation project(':libuniversalauth')
-
-    // Used to download Face Unlock libs
-//    implementation "com.aurora:gplayapi:3.0.1" // From "gplayapi" submodule
-
-    implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.9.3'
+    implementation project(':libuniversalauth-xposed')
+    compileOnly "de.robv.android.xposed:api:82"
 
     implementation 'androidx.navigation:navigation-fragment-ktx:2.4.1'
     implementation 'androidx.navigation:navigation-ui-ktx:2.4.1'

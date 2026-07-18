@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.8-a16fix13
+
+- Merge the FaceUnlock controller, recognition service, and LSPosed SystemUI module into one APK.
+- Replace the unavailable automatic download with a Material 3 Expressive two-step flow that opens APKPure, then imports and verifies a locally downloaded Moto Face Unlock `01.03.0312` APK.
+- Keep recognition libraries outside the release artifact because Motorola redistribution permission is not established.
+
 ## 1.8-a16fix12
 
 - Handle Android 16's direct `PrimaryBouncerInteractor` swipe path used by panel expansion.

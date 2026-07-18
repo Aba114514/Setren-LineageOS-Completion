@@ -10,4 +10,7 @@
         <item>mode_wake_and_unlock_pulsing</item>
         <item>mode_unlock_fading</item>
     </string-array>
+    <string-array name="xposed_scope">
+        <item>com.android.systemui</item>
+    </string-array>
 </resources>

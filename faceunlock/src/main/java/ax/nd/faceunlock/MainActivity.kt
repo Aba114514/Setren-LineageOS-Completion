@@ -3,6 +3,7 @@ package ax.nd.faceunlock
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import android.widget.Toast
@@ -51,7 +52,7 @@ class MainActivity : AppCompatActivity(), RemoveFaceControllerCallbacks {
 
         pickApkLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
             if(uri != null)
-                chooseLibsViewModel.downloadLibs(this, uri)
+                chooseLibsViewModel.importLibs(this, uri)
         }
 
         requestUnlockPermsLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) {}
@@ -179,5 +180,18 @@ class MainActivity : AppCompatActivity(), RemoveFaceControllerCallbacks {
 
     fun browseForFiles() {
         pickApkLauncher?.launch("*/*")
+    }
+
+    fun openLibraryDownloadPage() {
+        try {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(MOTO_FACE_UNLOCK_VERSIONS_URL)))
+        } catch (_: Exception) {
+            Toast.makeText(this, R.string.libs_browser_error, Toast.LENGTH_LONG).show()
+        }
+    }
+
+    companion object {
+        private const val MOTO_FACE_UNLOCK_VERSIONS_URL =
+            "https://apkpure.com/moto-face-unlock/com.motorola.faceunlock/versions"
     }
 }

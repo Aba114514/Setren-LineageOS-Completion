@@ -71,4 +71,15 @@
     <string name="auth_success">认证成功，用时 %1$d 毫秒</string>
     <string name="face_removed">面部已移除</string>
     <string name="face_remove_failed">无法移除面部：%1$s</string>
+    <string name="unlock_device_permission_label">解锁设备</string>
+    <string name="unlock_device_permission_desc">解锁并控制锁屏界面</string>
+    <string name="libs_required_title">需要识别库</string>
+    <string name="libs_required_message">1. 在浏览器中打开 APKPure，手动完成人机验证并下载 Moto Face Unlock 01.03.0312。\n\n2. 返回此处选择已下载的 APK。UniversalAuth 只会提取所需的四个 ARM64 识别库，并校验其 SHA-512 哈希；其他版本不兼容。</string>
+    <string name="libs_choose_apk">选择已下载的 APK</string>
+    <string name="libs_open_apkpure">打开 APKPure</string>
+    <string name="libs_browser_error">没有可用于打开 APKPure 的浏览器。</string>
+    <string name="libs_importing">正在导入并校验识别库…</string>
+    <string name="libs_import_error_title">无法导入识别库</string>
+    <string name="libs_import_error_message">所选文件不是 Moto Face Unlock 01.03.0312、文件不完整，或其中的识别库版本不同。\n\n%1$s</string>
+    <string name="libs_try_again">选择其他 APK</string>
 </resources>

@@ -31,4 +31,15 @@
     <string name="auth_success">Authentication successful in %1$d ms</string>
     <string name="face_removed">Face removed</string>
     <string name="face_remove_failed">Couldn’t remove face: %1$s</string>
+    <string name="unlock_device_permission_label">Unlock the device</string>
+    <string name="unlock_device_permission_desc">Unlock and control the lock screen</string>
+    <string name="libs_required_title">Recognition libraries required</string>
+    <string name="libs_required_message">1. Open APKPure and download Moto Face Unlock 01.03.0312 in your browser. Complete any website verification manually.\n\n2. Return here and select the downloaded APK. UniversalAuth extracts only the four required ARM64 libraries and verifies their SHA-512 hashes. Other versions are not compatible.</string>
+    <string name="libs_choose_apk">Choose downloaded APK</string>
+    <string name="libs_open_apkpure">Open APKPure</string>
+    <string name="libs_browser_error">No browser is available to open APKPure.</string>
+    <string name="libs_importing">Importing and verifying libraries…</string>
+    <string name="libs_import_error_title">Could not import libraries</string>
+    <string name="libs_import_error_message">The selected file is not Moto Face Unlock 01.03.0312, is incomplete, or contains different recognition libraries.\n\n%1$s</string>
+    <string name="libs_try_again">Choose another APK</string>
 </resources>

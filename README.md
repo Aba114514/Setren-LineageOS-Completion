@@ -18,16 +18,16 @@ UniversalAuth 可以为不同 Android ROM 提供自定义锁屏认证方式。�
 - “提前开始识别”跟随 SystemUI 的锁屏可见与唤醒状态启动识别，可能缩短等待时间，但依赖 ROM 内部接口，默认关闭。
 - 保留系统强认证规则：重启后首次解锁、锁定模式或系统要求密码时，仍需输入 PIN、图案或密码。
 - 需要 Xposed、EdXposed 或 LSPosed；Android 16 已在 Xiaomi 13（fuxi）上验证。
-- 人脸识别依赖 Megvii 的闭源专有库，应用会从 Motorola Face Unlock 应用中提取这些库。
+- 人脸识别依赖 Megvii 的闭源专有库；首次启动时需要选择 Motorola Face Unlock `01.03.0312` APK，应用只提取并校验所需的四个 ARM64 库。
 
 ### 安装
 
-1. 安装 UniversalAuth Xposed 模块，在 LSPosed 中启用并设置推荐作用域。
-2. **重启手机**，让更新后的 Xposed 代码进入 SystemUI。
-3. 安装 Face Unlock APK，打开应用并按提示下载识别库。
-4. 授予解锁权限，并启用 Face Unlock 辅助功能服务。
+1. 安装统一版 UniversalAuth APK；它同时包含控制界面、人脸识别服务和 LSPosed 模块。
+2. 在 LSPosed 中启用“人脸解锁”，作用域选择“系统界面/SystemUI”。从旧双 APK 版本升级时，请停用并卸载旧的独立 UniversalAuth Xposed 模块。
+3. 打开应用，点“打开 APKPure”，在浏览器中手动完成人机验证并下载 Motorola Face Unlock `01.03.0312`；返回应用后选择已下载的 APK 以导入识别库。[APKPure 历史版本页](https://apkpure.com/moto-face-unlock/com.motorola.faceunlock/versions)
+4. 授予解锁权限，并启用“人脸解锁”辅助功能服务。
 5. 点击“开始设置”录入面部；相机权限请选择“仅在使用该应用时允许”。
-6. 锁定屏幕并测试。更新 Xposed APK 后必须再次重启；仅更新 Face Unlock APK 通常不需要重启。
+6. **重启手机**，让 SystemUI 加载统一 APK 中的模块代码，然后锁屏测试。
 
 ## 原仓库说明
 
@@ -49,21 +49,16 @@ Currently available authentication modules:
 Face unlock allows you to unlock your phone with your face.
 
 The face unlock module depends on closed source, proprietary libraries developed by Megvii.
-These libraries can be found in this free app: https://play.google.com/store/apps/details?id=com.motorola.faceunlock so this app will download it and pull the libraries out of it.
+These libraries are available in Moto Face Unlock `01.03.0312`. The unified APK asks the user to select a locally obtained copy, then extracts only the required ARM64 libraries and verifies their hashes.
 
 
 #### Installation
-1. Install and enable the UniversalAuth Xposed module.
-2. Reboot to make sure the Xposed module is enabled.
-3. Install the face unlock auth module APK.
-4. A new app called "Face unlock" should now appear, open it.
-5. Allow the app to download the libraries when requested.
-6. Grant the app permission to unlock your phone when asked.
-7. Enable the accessibility service when asked.
-8. Press the "START SETUP" button to enroll your face. The app will ask you to grant it camera permissions, make sure to select "allow while using the app" if that option is available.
-9. Lock your phone and test that you are able to use face unlock!
-
-After updating the Xposed APK, reboot again so SystemUI loads the new module code. Updating only the face-unlock app normally does not require a reboot.
+1. Install the unified UniversalAuth APK. It contains the controller, recognizer, accessibility service, and LSPosed module.
+2. Enable Face unlock in LSPosed and scope it to SystemUI. Disable the legacy standalone UniversalAuth Xposed module when upgrading.
+3. Open Face unlock, use the APKPure button to download Moto Face Unlock `01.03.0312` manually, then return and select the downloaded APK. [APKPure version history](https://apkpure.com/moto-face-unlock/com.motorola.faceunlock/versions)
+4. Grant the unlock permission and enable the accessibility service.
+5. Enroll your face and grant camera access while using the app.
+6. Reboot so SystemUI loads the module code, then lock the phone and test.
 
 # Credits
 Thanks to:

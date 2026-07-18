@@ -9,8 +9,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import okhttp3.OkHttpClient
-import okhttp3.Request
 import org.apache.commons.codec.binary.Hex
 import java.io.*
 import java.security.DigestInputStream
@@ -28,47 +26,24 @@ sealed interface CheckResult {
 }
 
 sealed interface DownloadStatus {
-    data class Downloading(val importing: Boolean) : DownloadStatus
-    object AskImport : DownloadStatus
-    data class DownloadError(val importing: Boolean, val error: Exception?) : DownloadStatus
+    object Importing : DownloadStatus
+    data class ImportError(val error: Exception) : DownloadStatus
 }
 
 class ChooseLibsViewModel : ViewModel() {
     val checkingStatus = MutableStateFlow(false)
     val checkResult = MutableStateFlow<CheckResult?>(null)
     val downloadStatus = MutableStateFlow<DownloadStatus?>(null)
-    private val okhttp = OkHttpClient()
-
-    fun downloadLibs(context: Context, uri: Uri?) {
-        if(downloadStatus.value !is DownloadStatus.Downloading) {
-            downloadStatus.value = DownloadStatus.Downloading(uri != null)
+    fun importLibs(context: Context, uri: Uri) {
+        if(downloadStatus.value !is DownloadStatus.Importing) {
+            downloadStatus.value = DownloadStatus.Importing
             viewModelScope.launch {
                 try {
-                    downloadLibsInternal(context, uri)
-                    downloadStatus.value = DownloadStatus.DownloadError(uri != null, null)
+                    importLibsInternal(context, uri)
                 } catch (e: Exception) {
-                    downloadStatus.value = DownloadStatus.DownloadError(uri != null, e)
+                    downloadStatus.value = DownloadStatus.ImportError(e)
                 }
             }
-        }
-    }
-
-    private fun downloadApk(): InputStream {
-        val url = "$IPFS_GATEWAY/ipfs/$LIBS_CID"
-
-        val req = Request.Builder()
-            .url(url)
-            .build()
-
-        val body = okhttp.newCall(req).execute().body ?: run {
-            throw IOException("Response body is null!")
-        }
-
-        try {
-            return body.byteStream()
-        } catch (e: Exception) {
-            body.close()
-            throw e
         }
     }
 
@@ -78,13 +53,9 @@ class ChooseLibsViewModel : ViewModel() {
         }
     }
 
-    private suspend fun downloadLibsInternal(context: Context, uri: Uri?) {
+    private suspend fun importLibsInternal(context: Context, uri: Uri) {
         withContext(Dispatchers.IO) {
-            val inputStream = if(uri != null) {
-                openImportUri(context, uri)
-            } else {
-                downloadApk()
-            }
+            val inputStream = openImportUri(context, uri)
             inputStream.buffered().use { resp ->
                 val zin = ZipInputStream(resp)
                 while (true) {
@@ -127,11 +98,20 @@ class ChooseLibsViewModel : ViewModel() {
                         }
                     } else {
                         throw IOException("Hash mismatch, maybe the download got corrupted?")
+                        }
                     }
+                }
+                LibManager.updateLibraryData(context)
+                val missingLibraries = LibManager.librariesData.value
+                    .filterNot { it.valid }
+                    .joinToString { it.library.name }
+                if (missingLibraries.isNotEmpty()) {
+                    throw IOException(
+                        "Required ARM64 libraries were not found or did not match: $missingLibraries"
+                    )
                 }
             }
         }
-    }
 
     fun addLib(context: Context, library: RequiredLib, uri: Uri) {
         if (!checkingStatus.value && checkResult.value == null) {
@@ -163,14 +143,8 @@ class ChooseLibsViewModel : ViewModel() {
         }
     }
 
-    fun setAskImport() {
-        if(downloadStatus.value !is DownloadStatus.Downloading) {
-            downloadStatus.value = DownloadStatus.AskImport
-        }
-    }
-
     fun clearDownloadResult() {
-        if(downloadStatus.value !is DownloadStatus.Downloading) {
+        if(downloadStatus.value !is DownloadStatus.Importing) {
             downloadStatus.value = null
         }
     }
@@ -239,7 +213,5 @@ class ChooseLibsViewModel : ViewModel() {
     companion object {
         private val TAG = ChooseLibsViewModel::class.simpleName
 
-        private const val IPFS_GATEWAY = "https://cloudflare-ipfs.com"
-        private const val LIBS_CID = "QmQNREjjXTQBDpd69gFqEreNi1dV91eSGQByqi5nXU3rBt"
     }
 }

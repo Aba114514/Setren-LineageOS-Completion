@@ -3,8 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="ax.nd.faceunlock">
 
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
+
+    <permission
+        android:name="ax.nd.universalauth.permission.UNLOCK_DEVICE"
+        android:description="@string/unlock_device_permission_desc"
+        android:label="@string/unlock_device_permission_label"
+        android:protectionLevel="dangerous" />
 
     <application
         android:name=".FaceApplication"
@@ -14,6 +19,19 @@
         android:resizeableActivity="false"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="xposedmodule"
+            android:value="true" />
+        <meta-data
+            android:name="xposeddescription"
+            android:value="Face unlock controller and Android SystemUI integration" />
+        <meta-data
+            android:name="xposedminversion"
+            android:value="82" />
+        <meta-data
+            android:name="xposedscope"
+            android:resource="@array/xposed_scope" />
+
         <activity
             android:name=".FaceAuthActivity"
             android:showOnLockScreen="true"
