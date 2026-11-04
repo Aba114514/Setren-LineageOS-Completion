@@ -1,13 +1,18 @@
-*.iml
-.gradle
-/local.properties
-/.idea
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
-local.properties
+# Gradle and Android build outputs
+.gradle/
+**/build/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aab
+*.log
 
-# Do not upload libs to Github
-/private-libs
+# Local IDE and SDK settings
+.idea/
+*.iml
+local.properties
+.DS_Store
+captures/
+
+# Recognition libraries imported locally; never redistribute them
+/private-libs/

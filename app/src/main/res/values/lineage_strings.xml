@@ -1,0 +1,22 @@
+<resources>
+    <string name="lineage_title">Setren的LineageOS补全计划</string>
+    <string name="lineage_subtitle">LineageOS 增强</string>
+    <string name="lineage_recents">最近任务锁定</string>
+    <string name="lineage_recents_summary">下滑任务卡片锁定，清除所有时保留。</string>
+    <string name="lineage_face">人脸解锁</string>
+    <string name="lineage_face_summary">使用设备上的人脸识别解锁，保留系统强认证要求。</string>
+    <string name="lineage_brightness">亮屏修复 · 实验</string>
+    <string name="lineage_brightness_summary">低亮度唤醒时短暂调亮，再交还系统控制。保留最低亮度和自动亮度。</string>
+    <string name="lineage_face_settings">人脸录入与解锁设置</string>
+    <string name="lineage_setup">在 LSPosed 中选择系统界面和使用中的启动器。修改功能开关后，重启手机生效。</string>
+    <string name="lineage_unavailable">请先在 LSPosed 中启用模块，重启应用后再配置。</string>
+    <string name="lineage_aod">限时息屏显示</string>
+    <string name="lineage_aod_summary">需先开启系统息屏显示。进入 AOD 后计时，到时关闭；下次亮屏时重置，随后熄屏重新计时。通知短暂显示不重置时长。</string>
+    <string name="lineage_aod_duration">显示时长：%1$d 秒</string>
+    <string name="lineage_aod_unlimited">显示时长：不限时</string>
+    <string name="lineage_aod_input">时长（秒，0 为不限时）</string>
+    <string name="lineage_aod_invalid">请输入 0 至 2147483647 的整数</string>
+    <string name="lineage_aod_system_settings">系统息屏显示设置</string>
+    <string name="lineage_hide_icon">隐藏桌面图标</string>
+    <string name="lineage_hide_icon_summary">隐藏后可从 LSPosed 的模块设置打开此页面，并恢复桌面图标。</string>
+</resources>

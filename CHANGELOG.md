@@ -1,45 +1,25 @@
-# Changelog
+# 更新记录
 
-## 1.8-a16fix13
+## 0.3.0
 
-- Merge the FaceUnlock controller, recognition service, and LSPosed SystemUI module into one APK.
-- Replace the unavailable automatic download with a Material 3 Expressive two-step flow that opens APKPure, then imports and verifies a locally downloaded Moto Face Unlock `01.03.0312` APK.
-- Keep recognition libraries outside the release artifact because Motorola redistribution permission is not established.
+- 更名为“Setren的LineageOS补全计划”，使用作者提供的头像图标。
+- 增加隐藏和恢复桌面图标开关，保留 LSPosed 设置入口。
 
-## 1.8-a16fix12
+## 0.2.3
 
-- Handle Android 16's direct `PrimaryBouncerInteractor` swipe path used by panel expansion.
-- Dismiss the keyguard only for `StatusBarKeyguardViewManager#onPanelExpansionChanged` after successful face authentication.
-- Stop face authentication unconditionally on screen-off and user-present events so AOD never starts a new camera scan.
+- 删除首页和人脸设置页的 slogan 卡片。
+- 将人脸设置入口移入人脸解锁卡片，保留录入状态。
 
-## 1.8-a16fix11
+## 0.2.2
 
-- Handle the Android 16 lock-screen swipe bouncer request after successful custom-face authentication.
-- Limit bouncer suppression to the exact `BouncerScrimController#show` swipe reason.
-- Complete dismissal through KeyguardViewMediator only while temporary face authorization and strong-auth policy are both valid.
+- 修复功能配置共享权限，使 SystemUI 能读取实际开关。
+- 在生物识别解锁和亮屏后处理低亮度恢复。
+- 修复 AOD 计时初始化及短时超时调度。
 
-## 1.8-a16fix10
+## 0.2.0
 
-- Preserve the Android 16 modern face-auth StateFlow until swipe-to-dismiss completes.
-- Prevent native FaceManager failure callbacks from erasing a successful custom-face result.
-- Explicitly reset the protected state on screen-off, successful entry, or strong-auth rejection.
+- 增加自定义时长的 AOD 控制。
 
-## 1.8-a16fix9
+## 0.1.0
 
-- Preserve Android 16 custom-face authentication until swipe-to-dismiss completes.
-- Clear the temporary swipe authorization on screen-off or successful device entry.
-- Re-check Android strong-auth policy whenever SystemUI asks whether the bouncer can be skipped.
-
-## 1.8-a16fix8
-
-- Respect the Auto-dismiss lock screen preference on Android 16.
-- When auto-dismiss is disabled, authenticate the face but keep the keyguard visible until the user swipes.
-
-## 1.8-a16fix7
-
-- Add an Android 16 SystemUI face-authentication and wake-and-unlock path.
-- Keep Android strong-auth requirements intact.
-- Register the unlock receiver with explicit exported behavior on modern Android.
-- Migrate the face-unlock app to Material 3 Expressive with dynamic color.
-- Add Simplified Chinese strings for the main screen, settings, status, and enrollment flow.
-- Compile against Android API 36 and update the Android build toolchain.
+- 整合 RecentsLock、UniversalAuth 和实验性低亮度唤醒修复。

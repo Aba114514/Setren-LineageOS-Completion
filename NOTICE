@@ -1,0 +1,8 @@
+Setren的LineageOS补全计划 integrates UniversalAuth (Andy Bao, PixelExperience contributors,
+AOSP contributors; Apache-2.0) and RecentsLock (Copyright 2026 Setren; MIT).
+
+Integration changes: independent application ID and authentication broadcast /
+permission names; unified opt-in settings and LSPosed dispatcher; unchanged
+RecentsLock implementation; experimental event-driven temporary wake brightness; configurable per-session
+AOD timeout via SystemUI DozeMachine and AlarmManager.
+Recognition libraries remain proprietary and are not distributed here.

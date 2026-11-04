@@ -1,0 +1,19 @@
+<!-- Modified for LineageEnhance integration; see NOTICE. -->
+<resources>
+    <!-- Reply Preference -->
+    <string-array name="unlock_animation">
+        <item>Instant 1</item>
+        <item>Instant 2</item>
+        <item>Animated</item>
+    </string-array>
+    <string-array name="unlock_animation_values">
+        <item>mode_wake_and_unlock</item>
+        <item>mode_wake_and_unlock_pulsing</item>
+        <item>mode_unlock_fading</item>
+    </string-array>
+    <string-array name="xposed_scope">
+        <item>com.android.systemui</item>
+        <item>com.android.launcher3</item>
+        <item>com.google.android.apps.nexuslauncher</item>
+    </string-array>
+</resources>

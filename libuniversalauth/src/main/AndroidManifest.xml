@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Modified for LineageEnhance integration; see NOTICE. -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ax.nd.universalauth">
-    <uses-permission android:name="ax.nd.universalauth.permission.UNLOCK_DEVICE"/>
+    <uses-permission android:name="com.setren.lineageenhance.permission.UNLOCK_DEVICE"/>
 </manifest>
