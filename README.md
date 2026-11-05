@@ -27,7 +27,7 @@
 
 要求 JDK 21、Android SDK Platform 37.0 和 Build Tools 37.0.0。设置 `ANDROID_HOME`，或在本机 `local.properties` 中指定 SDK 路径。
 
-本机示例：
+示例：
 
 ```sh
 export JAVA_HOME=/usr/lib/jvm/java-21-zulu-fx
@@ -61,6 +61,5 @@ docs/                       来源和使用说明
 
 ## 来源与许可证
 
-代码基于 UniversalAuth（Apache-2.0）与 RecentsLock（MIT）。上游版本和源码归属见 [SOURCES](docs/SOURCES.md)，许可证见 [LICENSE.md](LICENSE.md)、[NOTICE](NOTICE) 和 [licenses](licenses)。版本变化见 [CHANGELOG](CHANGELOG.md)。
+代码基于 UniversalAuth（Apache-2.0），上游版本和源码归属见 [SOURCES](docs/SOURCES.md)，许可证见 [LICENSE.md](LICENSE.md)、[NOTICE](NOTICE) 和 [licenses](licenses)。版本变化见 [CHANGELOG](CHANGELOG.md)。
 
-头像由项目作者提供，不属于上述上游代码许可证的授权范围。
